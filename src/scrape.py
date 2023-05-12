@@ -36,14 +36,14 @@ def scrapeEuro(url, category, productId):
 
     # Espera a que se carguen los elementos necesarios
     wait = WebDriverWait(driver, 10)
-    articles = wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "#product-price-234 > span")))
+    xpath_expression = '//*[contains(@id, "product-price-")]/span'
+    articles = wait.until(EC.presence_of_all_elements_located((By.XPATH, xpath_expression)))
 
     # Extrae los títulos de los artículos
-    for article in articles:
-        formattedPrice = formatPriceEuro(article.text.strip())
-        print(formattedPrice)
+    formattedPrice = formatPriceEuro(articles[0].text.strip())
+    print(formattedPrice)
 
-    updateFirebase(category, productId, 'euro', formattedPrice)
+    # updateFirebase(category, productId, 'euro', formattedPrice)
 
     # Cierra el navegador
     driver.quit()
