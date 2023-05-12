@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from database import updateFirebase
 from formatters import formatPriceEuro, formatPriceExito
 
-def scrapeExito(url, productId):
+def scrapeExito(url, category, productId):
     # Crea una instancia del controlador de navegador
     driver = webdriver.Chrome()
 
@@ -22,12 +22,12 @@ def scrapeExito(url, productId):
         formattedPrice = formatPriceExito(article.text.strip())
         print(formattedPrice)
 
-    updateFirebase(productId, 'exito', formattedPrice)
+    updateFirebase(category, productId, 'exito', formattedPrice)
 
     # Cierra el navegador
     driver.quit()
 
-def scrapeEuro(url, productId):
+def scrapeEuro(url, category, productId):
         # Crea una instancia del controlador de navegador
     driver = webdriver.Chrome()
 
@@ -43,12 +43,12 @@ def scrapeEuro(url, productId):
         formattedPrice = formatPriceEuro(article.text.strip())
         print(formattedPrice)
 
-    updateFirebase(productId, 'euro', formattedPrice)
+    updateFirebase(category, productId, 'euro', formattedPrice)
 
     # Cierra el navegador
     driver.quit()
 
-def scrapeCarulla(url, productId):
+def scrapeCarulla(url, category, productId):
         # Crea una instancia del controlador de navegador
     driver = webdriver.Chrome()
 
@@ -64,12 +64,12 @@ def scrapeCarulla(url, productId):
         formattedPrice = formatPriceExito(article.text.strip())
         print(formattedPrice)
 
-    updateFirebase(productId, 'carulla', formattedPrice)
+    updateFirebase(category, productId, 'carulla', formattedPrice)
 
     # Cierra el navegador
     driver.quit()
 
-def scrapeJumbo(url, productId):
+def scrapeJumbo(url, category, productId):
         # Crea una instancia del controlador de navegador
     driver = webdriver.Chrome()
 
@@ -85,7 +85,7 @@ def scrapeJumbo(url, productId):
         formattedPrice = formatPriceExito(article.text.strip())
         print(formattedPrice)
 
-    updateFirebase(productId, 'jumbo', formattedPrice)
+    updateFirebase(category, productId, 'jumbo', formattedPrice)
 
     # Cierra el navegador
     driver.quit()
